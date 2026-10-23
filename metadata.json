@@ -1,0 +1,5 @@
+{
+  "name": "First30 — Emergency Guidance & Dispatcher Triage",
+  "description": "Voice-guided emergency first-aid assistance and dispatcher triage for the critical first 30 minutes before professional help arrives.",
+  "capabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

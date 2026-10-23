@@ -1,0 +1,6 @@
+{
+  "summary":  "Critical UX and functional bug fixes for First30.ai:\n- Eliminated duplicated step indicators and cautionary warning text in EmergencyFlow and StepCard.\n- Fixed all raw translation keys across English, German, Hindi, Spanish, French, and added first-class conversational Hinglish (Roman-script Hindi-English).\n- Renamed navigation label from 'Prepare & Practice' to 'First Aid Kit'.\n- Resolved PWA install button dead state across desktop and mobile browsers by adding structured platform install guidance modals.\n- Fixed Voice Guide question progression, Hinglish speech keywords, speech recognition error recovery, and replaced perpetual 'Analyzing...' state with clear status and direct protocol fallbacks.\n- Overhauled Nearby Help with manual city/area search (preset dictionary + Nominatim fallback), actionable browser permission guides, and unambiguous OpenStreetMap Live Radar vs. Demonstration data badges.\n- All 31 automated tests passing with 0 ESLint errors and pristine build compilation.",
+  "updatedAt":  "2026-10-22T10:01:04.721244999Z",
+  "requestFeedback":  true,
+  "userFacing":  true
+}

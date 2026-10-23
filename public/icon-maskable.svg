@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGradM" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#0e2a3b" />
+      <stop offset="100%" stop-color="#042f2e" />
+    </linearGradient>
+    <linearGradient id="tealGradM" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2dd4bf" />
+      <stop offset="100%" stop-color="#0d9488" />
+    </linearGradient>
+    <linearGradient id="pulseGradM" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#2dd4bf" />
+    </linearGradient>
+    <filter id="glowM" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Full-bleed background for maskable (Android clips to circle/squircle) -->
+  <rect width="512" height="512" fill="url(#bgGradM)" />
+
+  <!-- Safe zone: scale 0.72 centered at 256, 256 (gives >14% margin around all sides) -->
+  <g transform="translate(71.68, 71.68) scale(0.72)">
+    <!-- Medical Shield Silhouette -->
+    <path d="M256 70 C340 70 410 95 410 160 C410 290 320 380 256 440 C192 380 102 290 102 160 C102 95 172 70 256 70 Z"
+          fill="rgba(13, 148, 136, 0.2)" stroke="url(#tealGradM)" stroke-width="10" stroke-linejoin="round" />
+
+    <!-- Medical Cross Accent -->
+    <rect x="236" y="145" width="40" height="150" rx="10" fill="url(#tealGradM)" opacity="0.45" />
+    <rect x="181" y="200" width="150" height="40" rx="10" fill="url(#tealGradM)" opacity="0.45" />
+
+    <!-- Precision Lifeline / ECG Waveform -->
+    <path d="M120 256 L185 256 L205 205 L230 315 L260 165 L285 300 L305 235 L325 256 L392 256"
+          fill="none" stroke="url(#pulseGradM)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" filter="url(#glowM)" />
+
+    <circle cx="256" cy="165" r="10" fill="#ffffff" />
+    <text x="256" y="375" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="46" font-weight="900" fill="#2dd4bf" letter-spacing="4">FIRST 30</text>
+  </g>
+</svg>
