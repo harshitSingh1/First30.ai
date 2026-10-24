@@ -30,13 +30,13 @@ const Layout = ({
   const shouldShowBanner = !isDedicatedStepFlow && (showEmergencyBanner || location.pathname === '/citizen' || location.pathname === '/map');
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground selection:bg-primary/20 selection:text-primary">
+    <div className="min-h-screen min-h-[100dvh] w-full overflow-x-hidden flex flex-col bg-background text-foreground selection:bg-primary/20 selection:text-primary">
       {/* Subtle radial ambient highlight */}
       <div className="fixed inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(20,184,166,0.08),rgba(255,255,255,0))] pointer-events-none" />
       
       {showHeader && <Header />}
       
-      <main className="flex-1 relative z-10">
+      <main className={`flex-1 relative z-10 w-full ${shouldShowBanner ? 'pb-[calc(5.5rem+env(safe-area-inset-bottom,0px))]' : ''}`}>
         {children}
       </main>
       
@@ -45,7 +45,7 @@ const Layout = ({
       {shouldShowBanner && <EmergencyCallBanner />}
 
       {/* Persistent non-intrusive offline connectivity status & safe update prompt */}
-      <OfflineIndicator />
+      <OfflineIndicator isBannerPresent={shouldShowBanner} />
     </div>
   );
 };

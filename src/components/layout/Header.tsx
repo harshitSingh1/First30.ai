@@ -66,7 +66,7 @@ const Header = () => {
   // FOCUSED EMERGENCY HEADER (Active Mode)
   if (isEmergencyActive) {
     return (
-      <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur-md border-b border-border/40 shadow-sm">
+      <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur-md border-b border-border/40 shadow-sm pt-[env(safe-area-inset-top,0px)]">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between gap-2 md:gap-4">
           {/* Left: Exit Emergency */}
           <button
@@ -137,7 +137,7 @@ const Header = () => {
 
   // STANDARD HEADER (3-Zone Contract)
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/90 backdrop-blur-md border-b border-border/40 shadow-xs">
+    <header className="sticky top-0 z-50 w-full bg-background/90 backdrop-blur-md border-b border-border/40 shadow-xs pt-[env(safe-area-inset-top,0px)]">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between gap-4 md:gap-8">
         {/* Zone 1: Brand Wordmark */}
         <Link to="/" className="flex items-center shrink-0">
@@ -177,7 +177,7 @@ const Header = () => {
                 variant="ghost"
                 size="icon"
                 aria-label="Open navigation menu"
-                className="h-9 w-9 text-foreground"
+                className="h-11 w-11 min-h-[44px] min-w-[44px] text-foreground"
               >
                 <Menu className="w-5 h-5" />
               </Button>
@@ -185,7 +185,7 @@ const Header = () => {
 
             <SheetContent
               side="right"
-              className="w-[85vw] max-w-sm sm:w-80 h-[100dvh] flex flex-col p-0 bg-background border-l border-border/60 [&>button:last-child]:hidden"
+              className="w-[85vw] max-w-sm sm:w-80 h-[100dvh] flex flex-col p-0 bg-background border-l border-border/60 pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)] [&>button:last-child]:hidden"
             >
               <SheetTitle className="sr-only">First30.ai Menu</SheetTitle>
               <SheetDescription className="sr-only">
@@ -206,7 +206,7 @@ const Header = () => {
                   <button
                     type="button"
                     aria-label="Close navigation menu"
-                    className="w-10 h-10 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-xl text-muted-foreground hover:text-foreground hover:bg-secondary/60 active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-muted-foreground hover:text-foreground hover:bg-secondary/60 active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   >
                     <X className="w-5 h-5" />
                   </button>

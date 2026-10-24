@@ -84,6 +84,10 @@ const EmergencyCard = ({
     : 'min-h-[120px] p-5';
 
   const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Only apply 3D tilt on devices with mouse/hover to prevent layout jumping while scrolling on touch devices
+    if (typeof window !== 'undefined' && window.matchMedia && !window.matchMedia('(hover: hover)').matches) {
+      return;
+    }
     if (!cardRef.current) return;
     
     const rect = cardRef.current.getBoundingClientRect();

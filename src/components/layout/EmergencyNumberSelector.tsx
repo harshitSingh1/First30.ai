@@ -29,7 +29,7 @@ export const EmergencyNumberSelector = ({
         <button
           type="button"
           title={`Emergency region: ${currentRegion.name} (${numberOnly}) — Click to change`}
-          className={`h-9 px-2.5 rounded-xl border border-border/60 bg-secondary/40 hover:bg-secondary/70 text-foreground transition-colors flex items-center gap-1.5 text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${className}`}
+          className={`min-h-[44px] h-10 px-3 rounded-xl border border-border/60 bg-secondary/40 hover:bg-secondary/70 text-foreground transition-colors flex items-center gap-1.5 text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${className}`}
         >
           <span className="font-mono font-bold text-primary">{numberOnly}</span>
           <span className="text-sm ml-0.5 leading-none">{currentRegion.flag}</span>

@@ -15,6 +15,9 @@ export const HeroIllustration = () => {
   const [rotate, setRotate] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (typeof window !== 'undefined' && window.matchMedia && !window.matchMedia('(hover: hover)').matches) {
+      return;
+    }
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
@@ -100,7 +103,7 @@ export const HeroIllustration = () => {
         <div
           className="absolute z-30 animate-float-b"
           style={{
-            left: '-2%',
+            left: '0%',
             top: '47%',
             transform: 'translateZ(65px)',
           }}
@@ -152,7 +155,7 @@ export const HeroIllustration = () => {
         <div
           className="absolute z-30 animate-float-a"
           style={{
-            right: '-2%',
+            right: '0%',
             top: '47%',
             transform: 'translateZ(65px)',
           }}
