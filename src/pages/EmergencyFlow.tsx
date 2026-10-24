@@ -70,6 +70,8 @@ const EmergencyFlow = () => {
     resetFlow,
     addInput,
     collectedInputs,
+    completedSteps,
+    skippedSteps,
     getSummaryData 
   } = useEmergencyFlow(category || '');
   
@@ -236,10 +238,6 @@ const EmergencyFlow = () => {
     );
   }
 
-  const completedSteps = Array.from({ length: currentStepIndex }, (_, i) => 
-    flow.steps[i]?.title || `Step ${i + 1}`
-  );
-
   const handleDone = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
@@ -265,12 +263,12 @@ const EmergencyFlow = () => {
       });
     }
 
+    goToNextStep();
+
     if (isLastStep) {
       stopTimer();
       setCompletedDuration(elapsedTime);
       setShowSummary(true);
-    } else {
-      goToNextStep();
     }
   };
 
@@ -292,12 +290,12 @@ const EmergencyFlow = () => {
       );
     }
 
+    skipCurrentStep();
+
     if (isLastStep) {
       stopTimer();
       setCompletedDuration(elapsedTime);
       setShowSummary(true);
-    } else {
-      skipCurrentStep();
     }
   };
 

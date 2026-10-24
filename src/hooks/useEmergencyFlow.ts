@@ -26,8 +26,7 @@ export const useEmergencyFlow = (categoryId: string): UseEmergencyFlowReturn => 
   const flow = useMemo(() => getEmergencyFlowById(categoryId), [categoryId]);
   
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
-  const [completedSteps, setCompletedSteps] = useState<string[]>([]);
-  const [skippedSteps, setSkippedSteps] = useState<string[]>([]);
+  const [stepStatuses, setStepStatuses] = useState<Record<number, 'completed' | 'skipped'>>({});
   const [collectedInputs, setCollectedInputs] = useState<CollectedInput[]>([]);
   const [startTime] = useState(() => new Date());
 
@@ -36,6 +35,20 @@ export const useEmergencyFlow = (categoryId: string): UseEmergencyFlowReturn => 
   const progress = totalSteps > 0 ? ((currentStepIndex + 1) / totalSteps) * 100 : 0;
   const isFirstStep = currentStepIndex === 0;
   const isLastStep = currentStepIndex === totalSteps - 1;
+
+  const completedSteps = useMemo(() => {
+    if (!flow) return [];
+    return flow.steps
+      .filter((_, idx) => stepStatuses[idx] === 'completed')
+      .map((step) => step.title);
+  }, [flow, stepStatuses]);
+
+  const skippedSteps = useMemo(() => {
+    if (!flow) return [];
+    return flow.steps
+      .filter((_, idx) => stepStatuses[idx] === 'skipped')
+      .map((step) => step.title);
+  }, [flow, stepStatuses]);
 
   const addInput = useCallback((input: CollectedInput) => {
     setCollectedInputs((prev) => {
@@ -52,7 +65,10 @@ export const useEmergencyFlow = (categoryId: string): UseEmergencyFlowReturn => 
   const goToNextStep = useCallback(() => {
     if (!currentStep) return;
     
-    setCompletedSteps((prev) => [...prev, currentStep.title]);
+    setStepStatuses((prev) => ({
+      ...prev,
+      [currentStepIndex]: 'completed',
+    }));
     
     if (currentStepIndex < totalSteps - 1) {
       setCurrentStepIndex((prev) => prev + 1);
@@ -62,14 +78,21 @@ export const useEmergencyFlow = (categoryId: string): UseEmergencyFlowReturn => 
   const goToPreviousStep = useCallback(() => {
     if (currentStepIndex > 0) {
       setCurrentStepIndex((prev) => prev - 1);
-      setCompletedSteps((prev) => prev.slice(0, -1));
+      setStepStatuses((prev) => {
+        const next = { ...prev };
+        delete next[currentStepIndex - 1];
+        return next;
+      });
     }
   }, [currentStepIndex]);
 
   const skipCurrentStep = useCallback(() => {
     if (!currentStep) return;
     
-    setSkippedSteps((prev) => [...prev, currentStep.title]);
+    setStepStatuses((prev) => ({
+      ...prev,
+      [currentStepIndex]: 'skipped',
+    }));
     
     if (currentStepIndex < totalSteps - 1) {
       setCurrentStepIndex((prev) => prev + 1);
@@ -78,8 +101,7 @@ export const useEmergencyFlow = (categoryId: string): UseEmergencyFlowReturn => 
 
   const resetFlow = useCallback(() => {
     setCurrentStepIndex(0);
-    setCompletedSteps([]);
-    setSkippedSteps([]);
+    setStepStatuses({});
     setCollectedInputs([]);
   }, []);
 

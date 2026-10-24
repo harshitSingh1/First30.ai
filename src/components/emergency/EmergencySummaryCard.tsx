@@ -36,13 +36,18 @@ const EmergencySummaryCard = ({
   };
 
   const generateSummaryText = (): string => {
+    const uniqueSteps = Array.from(new Set(stepsCompleted));
+    const safeTotal = Math.max(totalSteps, uniqueSteps.length, 1);
+    const completedCount = Math.min(uniqueSteps.length, safeTotal);
+    const pct = Math.min(100, Math.max(0, Math.round((completedCount / safeTotal) * 100)));
+
     let summary = `====================================================\n`;
     summary += `         FIRST30.AI — EMERGENCY SUMMARY            \n`;
     summary += `====================================================\n\n`;
     summary += `Emergency Category : ${category}\n`;
     summary += `Date & Time        : ${new Date().toLocaleString()}\n`;
     summary += `Total Duration     : ${formatDuration(duration)}\n`;
-    summary += `Steps Completed    : ${stepsCompleted.length} of ${totalSteps} (${Math.round((stepsCompleted.length / Math.max(totalSteps, 1)) * 100)}%)\n\n`;
+    summary += `Steps Completed    : ${completedCount} of ${safeTotal} (${pct}%)\n\n`;
 
     if (collectedInputs.length > 0) {
       summary += `----------------------------------------------------\n`;
@@ -54,11 +59,11 @@ const EmergencySummaryCard = ({
       summary += `\n`;
     }
 
-    if (stepsCompleted.length > 0) {
+    if (uniqueSteps.length > 0) {
       summary += `----------------------------------------------------\n`;
       summary += `COMPLETED PROTOCOL STEPS\n`;
       summary += `----------------------------------------------------\n`;
-      stepsCompleted.forEach((step, index) => {
+      uniqueSteps.forEach((step, index) => {
         summary += `[✓] Step ${index + 1}: ${step}\n`;
       });
       summary += `\n`;
@@ -131,12 +136,16 @@ const EmergencySummaryCard = ({
 
   const handlePrint = () => {
     try {
+      const uniqueSteps = Array.from(new Set(stepsCompleted));
+      const safeTotal = Math.max(totalSteps, uniqueSteps.length, 1);
+      const completedCount = Math.min(uniqueSteps.length, safeTotal);
+
       const generated = downloadEmergencyCardPdf({
         category,
         duration: formatDuration(duration),
-        completedStepsCount: stepsCompleted.length,
-        totalStepsCount: totalSteps,
-        stepsCompleted,
+        completedStepsCount: completedCount,
+        totalStepsCount: safeTotal,
+        stepsCompleted: uniqueSteps,
         collectedInputs,
         recommendations,
       });
@@ -163,7 +172,10 @@ const EmergencySummaryCard = ({
     }
   };
 
-  const completionPct = Math.round((stepsCompleted.length / Math.max(totalSteps, 1)) * 100);
+  const uniqueSteps = Array.from(new Set(stepsCompleted));
+  const safeTotal = Math.max(totalSteps, uniqueSteps.length, 1);
+  const completedCount = Math.min(uniqueSteps.length, safeTotal);
+  const completionPct = Math.min(100, Math.max(0, Math.round((completedCount / safeTotal) * 100)));
 
   return (
     <div className={cn('premium-card p-6 md:p-8 space-y-5', className)}>
@@ -209,7 +221,7 @@ const EmergencySummaryCard = ({
             <span>Protocol Progress</span>
           </div>
           <p className="font-semibold text-sm text-foreground">
-            {stepsCompleted.length}/{totalSteps} ({completionPct}%)
+            {completedCount}/{safeTotal} ({completionPct}%)
           </p>
           <div className="w-full h-1.5 bg-background rounded-full overflow-hidden mt-1.5">
             <div
@@ -242,15 +254,15 @@ const EmergencySummaryCard = ({
       )}
 
       {/* Complete Steps Completed List */}
-      {stepsCompleted.length > 0 && (
+      {uniqueSteps.length > 0 && (
         <div className="pt-2">
           <h4 className="text-sm font-semibold text-foreground mb-2.5 flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
             <span>Steps Completed by Bystander</span>
-            <span className="text-xs text-muted-foreground font-normal">({stepsCompleted.length} steps)</span>
+            <span className="text-xs text-muted-foreground font-normal">({completedCount} steps)</span>
           </h4>
           <div className="space-y-1.5 max-h-56 overflow-y-auto pr-1">
-            {stepsCompleted.map((step, index) => (
+            {uniqueSteps.map((step, index) => (
               <div key={index} className="flex items-center gap-2.5 text-xs bg-secondary/30 border border-border/30 px-3 py-2.5 rounded-xl">
                 <span className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center shrink-0 text-xs">
                   ✓
