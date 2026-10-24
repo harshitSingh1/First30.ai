@@ -1,7 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { componentTagger } from "lovable-tagger";
 import { VitePWA } from "vite-plugin-pwa";
 
 // https://vitejs.dev/config/
@@ -15,7 +14,6 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === "development" && componentTagger(),
     VitePWA({
       registerType: "autoUpdate",
       injectRegister: "auto",
@@ -26,7 +24,7 @@ export default defineConfig(({ mode }) => ({
         "icon.svg",
         "icon-maskable.svg",
         "robots.txt",
-        "assets/aistudio/Teal_Healthcare_Cross_Emblem_ee6d56f6.png"
+        "assets/logo.png"
       ],
       manifest: {
         id: "/",
@@ -41,7 +39,7 @@ export default defineConfig(({ mode }) => ({
         scope: "/",
         icons: [
           {
-            src: "/assets/aistudio/Teal_Healthcare_Cross_Emblem_ee6d56f6.png",
+            src: "/assets/logo.png",
             sizes: "1024x1024",
             type: "image/png",
             purpose: "any",

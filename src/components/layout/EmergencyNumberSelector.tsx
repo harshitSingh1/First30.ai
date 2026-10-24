@@ -32,7 +32,6 @@ export const EmergencyNumberSelector = ({
           className={`h-9 px-2.5 rounded-xl border border-border/60 bg-secondary/40 hover:bg-secondary/70 text-foreground transition-colors flex items-center gap-1.5 text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${className}`}
         >
           <span className="font-mono font-bold text-primary">{numberOnly}</span>
-          <span className="text-muted-foreground uppercase">{currentRegion.code}</span>
           <span className="text-sm ml-0.5 leading-none">{currentRegion.flag}</span>
           <ChevronDown className="w-3.5 h-3.5 text-muted-foreground" />
         </button>

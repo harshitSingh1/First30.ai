@@ -388,6 +388,68 @@ First30.ai is a voice-guided emergency assistance platform that helps untrained 
 
 ---
 
+## 💻 Running Locally on Your Computer
+
+First30.ai is a 100% self-contained Vite + React + TypeScript Progressive Web App. It requires no internal platform directories (the `.aistudio` directory is excluded via `.gitignore` and is not needed to build or run the app).
+
+### Prerequisites
+- [Node.js](https://nodejs.org/) (version 18 or higher recommended)
+- `npm` (bundled with Node.js) or `pnpm` / `bun`
+
+### Quick Start
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/first30-ai.git
+cd first30-ai
+
+# 2. Install dependencies
+npm install
+
+# 3. Start local development server
+npm run dev
+```
+
+Open your browser and navigate to `http://localhost:3000`.
+
+### Building for Production
+```bash
+npm run build
+```
+The compiled, production-ready static assets will be output to the `dist/` folder. You can preview the production build locally with:
+```bash
+npm run preview
+```
+
+### Running Tests
+```bash
+npm test
+```
+
+---
+
+## 🚀 Deploying to Vercel
+
+The project includes a ready-to-use `vercel.json` configured with SPA client-side route rewrites and asset caching headers.
+
+### Option 1: Vercel Web Dashboard (Recommended)
+1. Push your code to your GitHub / GitLab / Bitbucket repository.
+2. Go to [vercel.com](https://vercel.com) and click **"Add New..." → "Project"**.
+3. Import your repository.
+4. Vercel automatically detects the **Vite** framework preset:
+   - **Framework Preset**: Vite
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+   - **Install Command**: `npm install`
+5. Click **"Deploy"**. Your application will be live in seconds!
+
+### Option 2: Vercel CLI
+```bash
+npm i -g vercel
+vercel
+```
+
+---
+
 ## 🗺️ Roadmap — What's Next
 
 | Phase | Feature | Timeline |

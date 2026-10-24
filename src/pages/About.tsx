@@ -9,7 +9,7 @@ const About = () => {
         <div className="text-center mb-12">
           <div className="w-20 h-20 rounded-2xl bg-white p-2 shadow-xl border border-white/20 flex items-center justify-center mx-auto mb-6 overflow-hidden">
             <img
-              src="/assets/aistudio/Teal_Healthcare_Cross_Emblem_ee6d56f6.png"
+              src="/assets/logo.png"
               alt="First30.ai Emblem"
               className="w-full h-full object-contain"
             />

@@ -227,7 +227,7 @@ export const HeroIllustration = () => {
           {/* Medical Cross Symbol Emblem */}
           <div className="relative w-18 h-18 md:w-20 md:h-20 rounded-2xl bg-white p-2.5 flex items-center justify-center shadow-xl shadow-teal-500/30 mb-2 overflow-hidden border border-teal-500/30">
             <img
-              src="/assets/aistudio/Teal_Healthcare_Cross_Emblem_ee6d56f6.png"
+              src="/assets/logo.png"
               alt="First30 Emblem"
               className="w-full h-full object-contain"
             />

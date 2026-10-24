@@ -39,7 +39,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
         )}
       >
         <img
-          src="/assets/aistudio/Teal_Healthcare_Cross_Emblem_ee6d56f6.png"
+          src="/assets/logo.png"
           alt="First30.ai Logo"
           className="w-full h-full object-contain"
           loading="eager"
